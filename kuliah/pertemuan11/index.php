@@ -4,6 +4,10 @@ require 'functions.php';
 // tampung nilai rows di variabel mahasiswa
 $mahasiswa = query("SELECT * FROM mahasiswa");
 
+
+if(isset($_POST['cari'])){
+   $mahasiswa = cari($_POST['keyword']);
+}
  ?>
 
 
@@ -19,7 +23,12 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
 </head>
 
 <body>
-   <a href="tambahdata.php">Tambah Data</a>
+   <a href="tambahdata.php" style="display: block;">Tambah Data</a>
+   <br>
+   <form action="" method="post">
+      <input placeholder="masukkan keyword pencarian" autocomplete="off" autofocus type="text" name="keyword" size="30">
+      <button type="submit" name="cari">cari</button>
+   </form>
    <br>
    <table border="1" cellspacing="0" cellpadding="10">
       <tr>
@@ -28,6 +37,14 @@ $mahasiswa = query("SELECT * FROM mahasiswa");
          <th>Nama</th>
          <th>Aksi</th>
       </tr>
+
+      <?php if(empty($mahasiswa)): ?>
+      <tr>
+         <td colspan="4">
+            <p>Data Mahasiswa Tidak Ditemukan</p>
+         </td>
+      </tr>
+      <?php endif ?>
 
       <?php $i = 1; ?>
       <?php foreach($mahasiswa as $m) :?>
