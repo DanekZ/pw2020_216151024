@@ -18,7 +18,10 @@ if(isset($_POST['tambah'])){
             document.location.href = 'index.php';
             </script>";
    } else {
-      echo "data anda gagal terkirim";
+      echo "<script>
+            alert('data gagal ditambahkan!')
+            document.location.href = 'tambahdata.php';
+            </script>";
    }
 }
 
@@ -36,7 +39,7 @@ if(isset($_POST['tambah'])){
 
 <body>
    <h3>form tambah data mahasiswa</h3>
-   <form action="" method="POST">
+   <form action="" method="POST" enctype="multipart/form-data">
       <ul>
          <li>
             <label>
@@ -65,7 +68,7 @@ if(isset($_POST['tambah'])){
          <li>
             <label>
                gambar :
-               <input type="text" name="gambar">
+               <input type="file" name="gambar">
             </label>
          </li>
          <li>
